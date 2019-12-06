@@ -1,11 +1,35 @@
 //This is the Server
-console.log("Server");
+const express = require('express');
+const app = express();
+const hostname = '127.0.0.1';
+const port = 3000;
+const fs = require('fs');
 
+//Add movie info to JSON file
+app.post('/movies/addInfo/:movieTitle', (req, res) => {
+	//probably change this to more info about movie which is taken
+	//from the client and API
+	let movieTitle = req.params.movieTitle;
+	let movieObj = {};
+	movieObj.movieTitle = movieTitle;
 
-let request = new XMLHttpRequest();
-request.open("GET", "https://api.themoviedb.org/3/movie/550?api_key=3a043ebff6ecb3d6e8cb2e769586c448", true);
-request.onload = function() {
-	let data = JSON.parse(this.response);
-	console.log(data);
-//https://developers.themoviedb.org/3/movies/get-movie-details
-//website that it comes from 
+	let infoFile = JSON.parse(fs.readFileSync('info.json'));
+	infoFile.push(movieObj);
+
+	fs.writeFileSync('info.json', JSON.stringify(infoFile), err => {
+    if(err) throw err;
+    console.log('Saved file');
+  })
+
+  res.send(infoFile);
+});
+
+//Get movie info from JSON file
+app.get('/movies/getInfo', (req, res) => {
+	let infoFile = JSON.parse(fs.readFileSync('info.json'));
+	res.send(infoFile);
+});
+
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}!`);
+});

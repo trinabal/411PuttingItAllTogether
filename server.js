@@ -4,11 +4,11 @@ const app = express();
 const hostname = '127.0.0.1';
 const port = 3000;
 const fs = require('fs');
+var cors = require('cors');
+app.use(cors());
 
 //Add movie info to JSON file
 app.post('/movies/addInfo/:movieTitle', (req, res) => {
-	//probably change this to more info about movie which is taken
-	//from the client and API
 	let movieTitle = req.params.movieTitle;
 	let movieObj = {};
 	movieObj.movieTitle = movieTitle;

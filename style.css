@@ -1,8 +1,5 @@
-* {
-  margin: 0;
-}
 body {
-  /* background-color: #; */
+  background-color: #9ACEF4;
 }
 h1 {
   color: black;
@@ -16,7 +13,6 @@ h1 {
   /* flex-direction: row-reverse; */
 }
 .flexItem {
-  background-color: white;
   padding: 5px;
   color: black;
   /* font-size: 20%; */
@@ -24,4 +20,16 @@ h1 {
   text-align: center;
   margin: 10px;
   /* flex-grow: 10; */
+}
+
+#infoBox{
+  display: none;
+  position: relative;
+  background-color: grey;
+  width: 500px;
+  height: 500px;
+  /* top: 50px; */
+  /* left: 100px; */
+  margin-left: auto;
+  margin-right: auto;
 }

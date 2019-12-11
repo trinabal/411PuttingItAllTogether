@@ -3,22 +3,36 @@
   <head>
     <meta charset="utf-8">
     <title>Putting It All Together</title>
-    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <h1>Movie Search</h1>
+    </br></br>
     <label>Enter a movie title to search: </label>
     <input type="text" id="searchTitle"></input>
     <button id="movieTitleBtn" onclick="getInfo();">Search</button>
-    <button id="movieTitleBtn" onclick="getTitle();">Get Top Movies</button>
-
-    <div id="Movies"class="flexContainer"></div>
+    </br></br>
+    <label>Get Top Rated Movies</label>
+    <button id="topMoviesBtn" onclick="getTitle();">Movies</button>
+    </br></br>
+    <label>Get Search History (From JSON file)</label>
+    <button id="searchHistoryBtn" onclick="getSearchInfo();">History</button>
+    <li id="searchHistoryList"></li>
+    </br>
+    <div id="Movies"class="flexContainer">
         <ul class="flexContainer">
             <li class="flexItem"></li>
         </ul>
+    </div>
+    <!-- <button id="movieTitleBtn" onclick="">Get Top Movies</button> -->
 
     <div id="title"></div>
 
+
+    <div id="infoBox">
+      <h1 id="titlePop">Title</h1>
+      <p id=descrPop>Paragraph</p>
+    </div>
     <div id="posters"></div>
     <script src="client.js" defer></script>
   </body>

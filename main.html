@@ -19,12 +19,15 @@
     <button id="searchHistoryBtn" onclick="getSearchInfo();">History</button>
     <li id="searchHistoryList"></li>
     </br>
-    <div id="Movies"class="flexContainer">
-        <ul class="flexContainer">
-            <li class="flexItem"></li>
-        </ul>
+    </br>
+    <div id="movieRadio">
+      <label>Select a top rated movie to see more info</label>
+      </br>
+      <div id="radioBtns"></div>
+      <input type= radio id="movies"></input>
+      <button id="choiceButton" onclick="radioChoice();">Submit</button>
     </div>
-    <!-- <button id="movieTitleBtn" onclick="">Get Top Movies</button> -->
+
 
     <div id="title"></div>
 
@@ -33,6 +36,10 @@
       <h1 id="titlePop">Title</h1>
       <p id=descrPop>Paragraph</p>
     </div>
+    <div id="recommendedMov">
+      <h2 id="recTitle" style="display:none">Recommendations based on Selected Movie</h2>
+    </div>
+    <br><br><br>
     <div id="posters"></div>
     <script src="client.js" defer></script>
   </body>

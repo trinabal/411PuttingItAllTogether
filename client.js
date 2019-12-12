@@ -13,22 +13,29 @@ function getTitle(){
 	  request.open("GET", "https://api.themoviedb.org/3/movie/top_rated?api_key=" + key + "&language=en-US&page=1", true)
 		request.onload = function() {
 			let data = JSON.parse(this.response);
-
 	    if (request.status == 200)
 			{
 				results = data.results;
+				document.querySelector("#movieRadio").style.display = "block";
 				for (let i = 0; i < results.length; i++)
 				{
-	        let movie = document.createElement("li")
-	        let movieText = document.createTextNode(results[i].title);
-					console.log(results[i].id);
-	        movie.appendChild(movieText);
-					document.querySelector("#Movies").appendChild(movie);
-	        // document.querySelector("#Movies").innerHTML = data.results;
-	      }
+					let movie = document.createElement("input");
+					let movieText = document.createTextNode(results[i].title);
+					console.log(movieText);
+
+
+					movie.appendChild(movieText);
+					movie.setAttribute('id', 'num' + i);
+					// movie.setAttribute('class', 'movies');
+					movie.setAttribute('type', 'radio');
+
+					document.querySelector("#radioBtns").appendChild(movie);
+					document.querySelector("#radioBtns").innerHTML = movieText;
+					// document.querySelector("#Movies").innerHTML = data.results;
+					}
 	    }
 	  }
-		getInfo();
+		// getInfo();
 	  request.send();
 	}
 
@@ -108,21 +115,34 @@ function clickedImg(i) {
 		img.setAttribute('width', '200px');
 		img.setAttribute('height', '300px');
 		document.querySelector('#infoBox').appendChild(img);
+		getMovieRecommendations(id);
+
 	}
 	request.send();
 }
 
-function getMovieRecommendations() {
+function getMovieRecommendations(id) {
 	let request = new XMLHttpRequest();
-  request.open("GET", "https://api.themoviedb.org/3/movie/5/recommendations?api_key=" + key + "&language=en-US&page=1", true)
+  request.open("GET", "https://api.themoviedb.org/3/movie/"+id+"/recommendations?api_key=" + key + "&language=en-US&page=1", true)
 	request.onload = function() {
 		let data = JSON.parse(this.response);
-		console.log(data);
+		results = data.results;
+		console.log(results);
+		document.querySelector("#recTitle").style.display = "block";
+		for (let i = 0; i < results.length; i++)
+		{
+			let recMovie = document.createElement("li")
+			let recMovieText = document.createTextNode(results[i].title);
+			recMovie.appendChild(recMovieText);
+			document.querySelector("#recommendedMov").appendChild(recMovie);
 
-   // document.querySelector("#recommendTitle").innerHTML = data;
+		}
+
+
   }
   request.send();
 }
+
 
 
 //https://developers.themoviedb.org/3/movies/get-movie-details
@@ -138,7 +158,8 @@ function addSearchItem() {
     data = JSON.parse(this.response);
     if (request.status == 200)
     {
-      // console.log(data);
+			console.log("History data");
+      console.log(data);
     }
     else {console.log("ERROR");}
   }

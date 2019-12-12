@@ -33,3 +33,8 @@ h1 {
   margin-left: auto;
   margin-right: auto;
 }
+
+#movieRadio {
+  display:none;
+  border: 1px dashed black;
+}

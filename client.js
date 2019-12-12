@@ -16,27 +16,48 @@ function getTitle(){
 	    if (request.status == 200)
 			{
 				results = data.results;
-				document.querySelector("#movieRadio").style.display = "block";
+				console.log(results);
+				// document.querySelector("#movieRadio").style.display = "block";
 				for (let i = 0; i < results.length; i++)
 				{
 					let movie = document.createElement("input");
 					let movieText = document.createTextNode(results[i].title);
-					console.log(movieText);
-
 
 					movie.appendChild(movieText);
-					movie.setAttribute('id', 'num' + i);
+					// movie.setAttribute('id', 'num' + i);
 					// movie.setAttribute('class', 'movies');
-					movie.setAttribute('type', 'radio');
+					// movie.setAttribute('type', 'radio');
 
-					document.querySelector("#radioBtns").appendChild(movie);
-					document.querySelector("#radioBtns").innerHTML = movieText;
+					document.querySelector("#topRadio").appendChild(movieText);
+					document.querySelector("#title").innerHTML = movie;
 					// document.querySelector("#Movies").innerHTML = data.results;
 					}
 	    }
 	  }
 		// getInfo();
 	  request.send();
+	}
+
+	function getTopRatedInfo()
+	{
+		movieTitle = document.querySelector("#searchTop").value;
+		let request = new XMLHttpRequest();
+			request.open("GET", "https://api.themoviedb.org/3/movie/top_rated?api_key=" + key + "&language=en-US&page=1", true)
+			request.onload = function() {
+				let data = JSON.parse(this.response);
+				if (request.status == 200)
+				{
+					results = data.results;
+					for (let i = 0; i < results.length; i++)
+					{
+						topInfo = results[i];
+						document.querySelector('#top').appendChild(topInfo);
+
+					}
+				}
+			}
+
+
 	}
 
 
